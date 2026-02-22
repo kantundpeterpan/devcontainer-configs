@@ -1,6 +1,6 @@
 {
   "name": "Data Science DevContainer",
-  "image": "ghcr.io/yourusername/devcontainer-base-images/datascience:latest",
+  "image": "ghcr.io/${localEnv:GHCR_USERNAME:-yourusername}/devcontainer-base-images/datascience:latest",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -16,7 +16,7 @@
       }
     },
     "devpod": {
-      "prebuildRepository": "${localEnv:DEVPOD_PREBUILD_REPO:-ghcr.io/yourusername/devpod-cache}"
+      "prebuildRepository": "${localEnv:DEVPOD_PREBUILD_REPO:-ghcr.io/${localEnv:GHCR_USERNAME:-yourusername}/devpod-cache}"
     }
   },
   "remoteUser": "vscode",
