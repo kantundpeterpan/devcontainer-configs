@@ -1,0 +1,50 @@
+{
+  "name": "Showcase DevContainer",
+  "image": "ghcr.io/yourusername/devcontainer-base-images/fullstack:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "continue.continue"
+      ]
+    },
+    "devpod": {
+      "prebuildRepository": "${localEnv:DEVPOD_PREBUILD_REPO:-ghcr.io/yourusername/devpod-cache}"
+    }
+  },
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": false
+    },
+    "ghcr.io/devcontainers-extra/features/act:1": {}
+  },
+  "containerEnv": {
+    "RELOAD": "true"
+  },
+  "remoteEnv": {
+    "GCP_SERVICE_ACCOUNT_KEY": "${localEnv:GCP_SA_KEY}"
+  },
+  "forwardPorts": [8000, 5173],
+  "portsAttributes": {
+    "8000": {
+      "label": "Backend API",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Frontend (Vite)",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+  ],
+  "postStartCommand": "if [ -f .devcontainer/showcase/startup.sh ]; then zsh .devcontainer/showcase/startup.sh; else echo 'No startup script found'; fi"
+}
