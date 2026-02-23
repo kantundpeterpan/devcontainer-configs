@@ -7,7 +7,10 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "charliermarsh.ruff",
-        "continue.continue"
+        "continue.continue",
+        "anomalyco.opencode",
+        "github.vscode-github-actions",
+        "sanjulaganepola.github-local-actions"
       ]
     },
     "devpod": {
@@ -24,7 +27,8 @@
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "moby": false
     },
-    "ghcr.io/devcontainers-extra/features/act:1": {}
+    "ghcr.io/devcontainers-extra/features/act:1": {},
+    "ghcr.io/devcontainers/features/quarto-cli:1": {}
   },
   "containerEnv": {
     "RELOAD": "true"

@@ -21,6 +21,7 @@
         "tamasfe.even-better-toml",
         "eamodio.gitlens",
         "continue.continue",
+        "anomalyco.opencode",
         "sanjulaganepola.github-local-actions"
       ],
       "settings": {
@@ -58,7 +59,8 @@
       "moby": false
     },
     "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
-    "ghcr.io/devcontainers/features/terraform:1": {}
+    "ghcr.io/devcontainers/features/terraform:1": {},
+    "ghcr.io/devcontainers/features/quarto-cli:1": {}
   },
   "forwardPorts": [
     8080,

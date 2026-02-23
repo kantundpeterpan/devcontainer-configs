@@ -8,6 +8,8 @@
         "ms-python.vscode-pylance",
         "chainlit.chainlit-vscode",
         "continue.continue",
+        "anomalyco.opencode",
+        "github.vscode-github-actions",
         "sanjulaganepola.github-local-actions"
       ],
       "settings": {
@@ -29,7 +31,8 @@
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "moby": false
     },
-    "ghcr.io/devcontainers-extra/features/act:1": {}
+    "ghcr.io/devcontainers-extra/features/act:1": {},
+    "ghcr.io/devcontainers/features/quarto-cli:1": {}
   },
   "forwardPorts": [8000],
   "portsAttributes": {
