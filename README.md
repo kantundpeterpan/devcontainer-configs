@@ -66,13 +66,28 @@ EOF
 ### 2. Data Science Configuration
 **Base Image**: `ghcr.io/yourusername/devcontainer-base-images/datascience:latest`
 
-- Python 3.11 + uv
+- Python 3.13 + uv
 - Jupyter Lab with extensions
 - pandas, numpy, matplotlib, scikit-learn, seaborn, plotly
 - Docker CLI
 - VS Code extensions: Python, Pylance, Jupyter tools
 
-### 3. GEN-AI Chainlit Configuration
+### 3. Data Science Extended Configuration
+**Base Image**: `ghcr.io/yourusername/devcontainer-base-images/datascience-extended:latest`
+
+- Python 3.13 + uv
+- Jupyter Lab with extensions
+- pandas, numpy, matplotlib, scikit-learn, seaborn, plotly
+- **Polars** - High-performance DataFrames
+- **SQLAlchemy** - SQL toolkit and ORM
+- **SQLite** - Embedded database
+- **XGBoost, LightGBM, CatBoost** - Gradient boosting
+- **Optuna** - Hyperparameter optimization
+- **Great Expectations** - Data validation
+- Docker CLI
+- VS Code extensions: Python, Pylance, Jupyter tools, SQLTools
+
+### 4. GEN-AI Chainlit Configuration
 **Base Image**: `ghcr.io/yourusername/devcontainer-base-images/genai-chainlit:latest`
 
 - Python 3.11 + uv
@@ -81,7 +96,7 @@ EOF
 - Docker CLI
 - VS Code extensions: Python, Pylance, Chainlit
 
-### 4. Showcase Configuration
+### 5. Showcase Configuration
 **Base Image**: `ghcr.io/yourusername/devcontainer-base-images/fullstack:latest`
 
 - Auto-starting services (frontend + backend)
