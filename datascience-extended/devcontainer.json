@@ -1,0 +1,54 @@
+{
+  "name": "Data Science Extended DevContainer",
+  "image": "ghcr.io/${localEnv:GHCR_USERNAME:-yourusername}/devcontainer-base-images/datascience-extended:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-renderers",
+        "mechatroner.rainbow-csv",
+        "randyhill.sqltools",
+        "randyhill.sqltools-driver-pg",
+        "randyhill.sqltools-driver-mysql"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.testing.pytestEnabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black"
+      }
+    },
+    "devpod": {
+      "prebuildRepository": "${localEnv:DEVPOD_PREBUILD_REPO:-ghcr.io}/${localEnv:GHCR_USERNAME:-yourusername}/devpod-cache"
+    }
+  },
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": false
+    }
+  },
+  "forwardPorts": [8888, 8000],
+  "portsAttributes": {
+    "8888": {
+      "label": "Jupyter Lab",
+      "onAutoForward": "openBrowser"
+    },
+    "8000": {
+      "label": "FastAPI/API Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+  ],
+  "postStartCommand": "if [ -d ~/.ssh ]; then chmod 700 ~/.ssh && chmod 600 ~/.ssh/*; fi"
+}
