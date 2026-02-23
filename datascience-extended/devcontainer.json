@@ -12,7 +12,9 @@
         "mechatroner.rainbow-csv",
         "randyhill.sqltools",
         "randyhill.sqltools-driver-pg",
-        "randyhill.sqltools-driver-mysql"
+        "randyhill.sqltools-driver-mysql",
+        "continue.continue",
+        "sanjulaganepola.github-local-actions"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
@@ -22,7 +24,7 @@
       }
     },
     "devpod": {
-      "prebuildRepository": "${localEnv:DEVPOD_PREBUILD_REPO:ghcr.io}/${localEnv:GHCR_USERNAME:-yourusername}/devpod-cache"
+      "prebuildRepository": "${localEnv:DEVPOD_PREBUILD_REPO:-ghcr.io}/${localEnv:GHCR_USERNAME:-yourusername}/devpod-cache"
     }
   },
   "remoteUser": "vscode",
@@ -34,7 +36,8 @@
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "moby": false
-    }
+    },
+    "ghcr.io/devcontainers-extra/features/act:1": {}
   },
   "forwardPorts": [8888, 8000],
   "portsAttributes": {

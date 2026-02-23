@@ -19,7 +19,9 @@
         "ms-kubernetes-tools.vscode-kubernetes-tools",
         "redhat.vscode-yaml",
         "tamasfe.even-better-toml",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "continue.continue",
+        "sanjulaganepola.github-local-actions"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",

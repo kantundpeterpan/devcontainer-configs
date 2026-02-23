@@ -11,7 +11,7 @@
       ]
     },
     "devpod": {
-      "prebuildRepository": "${localEnv:DEVPOD_PREBUILD_REPO:ghcr.io/${localEnv:GHCR_USERNAME:-yourusername}/devpod-cache"
+      "prebuildRepository": "${localEnv:DEVPOD_PREBUILD_REPO:-ghcr.io}/${localEnv:GHCR_USERNAME:-yourusername}/devpod-cache"
     }
   },
   "remoteUser": "vscode",
