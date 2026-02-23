@@ -14,7 +14,7 @@
         "randyhill.sqltools-driver-pg",
         "randyhill.sqltools-driver-mysql",
         "continue.continue",
-        "anomalyco.opencode",
+        "openchamber.openchamber",
         "github.vscode-github-actions",
         "sanjulaganepola.github-local-actions"
       ],
@@ -32,9 +32,7 @@
   "remoteUser": "vscode",
   "updateRemoteUserUID": true,
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "configureZshAsDefaultShell": true
-    },
+    "ghcr.io/devcontainers/features/common-utils:2": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "moby": false
@@ -54,7 +52,10 @@
     }
   },
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/opencode,target=/home/vscode/.config/opencode,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/gcloud,target=/home/vscode/.config/gcloud,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached"
   ],
   "postStartCommand": "if [ -d ~/.ssh ]; then chmod 700 ~/.ssh && chmod 600 ~/.ssh/*; fi"
 }

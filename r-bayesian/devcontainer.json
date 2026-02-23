@@ -9,7 +9,7 @@
         "Ikuyadeu.r",
         "RDebugger.r-debugger",
         "quarto.quarto",
-        "anomalyco.opencode",
+        "openchamber.openchamber",
         "github.vscode-github-actions",
         "sanjulaganepola.github-local-actions"
       ],
@@ -32,6 +32,7 @@
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-extra/features/opencode:1": {},
     "ghcr.io/devcontainers/features/quarto-cli:1": {}
   },
   "forwardPorts": [8888, 8787],
@@ -46,7 +47,10 @@
     }
   },
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/opencode,target=/home/vscode/.config/opencode,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/gcloud,target=/home/vscode/.config/gcloud,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached"
   ],
   "postStartCommand": "if [ -d ~/.ssh ]; then chmod 700 ~/.ssh && chmod 600 ~/.ssh/*; fi"
 }

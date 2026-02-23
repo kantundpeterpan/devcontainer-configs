@@ -21,7 +21,7 @@
         "tamasfe.even-better-toml",
         "eamodio.gitlens",
         "continue.continue",
-        "anomalyco.opencode",
+        "openchamber.openchamber",
         "sanjulaganepola.github-local-actions"
       ],
       "settings": {
@@ -51,9 +51,7 @@
   "remoteUser": "vscode",
   "updateRemoteUserUID": true,
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "configureZshAsDefaultShell": true
-    },
+    "ghcr.io/devcontainers/features/common-utils:2": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "moby": false
@@ -99,7 +97,10 @@
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
     "source=${localEnv:HOME}/.dbt,target=/home/vscode/.dbt,type=bind,consistency=cached",
-    "source=${localEnv:HOME}/.gcp,target=/home/vscode/.gcp,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.gcp,target=/home/vscode/.gcp,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/opencode,target=/home/vscode/.config/opencode,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/gcloud,target=/home/vscode/.config/gcloud,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached"
   ],
   "postStartCommand": "if [ -d ~/.ssh ]; then chmod 700 ~/.ssh && chmod 600 ~/.ssh/*; fi",
   "containerEnv": {

@@ -11,7 +11,8 @@
         "google.gemini-cli-vscode-ide-companion",
         "quarto.quarto",
         "github.vscode-github-actions",
-        "sanjulaganepola.github-local-actions"
+        "sanjulaganepola.github-local-actions",
+        "openchamber.openchamber"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
@@ -25,18 +26,20 @@
   "remoteUser": "vscode",
   "updateRemoteUserUID": true,
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "configureZshAsDefaultShell": true
-    },
+    "ghcr.io/devcontainers/features/common-utils:2": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers-extra/features/opencode:1": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "moby": false
     },
-    "ghcr.io/devcontainers-extra/features/act:1": {}
+    "ghcr.io/devcontainers-extra/features/act:1": {},
+    "ghcr.io/devcontainers/features/quarto-cli:1": {}
   },
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/opencode,target=/home/vscode/.config/opencode,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/gcloud,target=/home/vscode/.config/gcloud,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached"
   ],
   "postStartCommand": "if [ -d ~/.ssh ]; then chmod 700 ~/.ssh && chmod 600 ~/.ssh/*; fi"
 }
