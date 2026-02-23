@@ -1,0 +1,107 @@
+{
+  "name": "Data Engineering DevContainer",
+  "image": "ghcr.io/${localEnv:GHCR_USERNAME:-yourusername}/devcontainer-base-images/data-engineering:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+        "mechatroner.rainbow-csv",
+        "randyhill.sqltools",
+        "randyhill.sqltools-driver-pg",
+        "randyhill.sqltools-driver-mysql",
+        "randyhill.sqltools-driver-sqlite",
+        "bastienboutonnet.vscode-dbt",
+        "innoverio.vscode-dbt-power-user",
+        "ms-azuretools.vscode-docker",
+        "github.vscode-github-actions",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "redhat.vscode-yaml",
+        "tamasfe.even-better-toml",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.testing.pytestEnabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black",
+        "dbt.enableNewLineagePanel": true,
+        "dbt.queryLimit": 500,
+        "sqltools.connections": [
+          {
+            "name": "Local Postgres",
+            "driver": "PostgreSQL",
+            "server": "localhost",
+            "port": 5432,
+            "database": "postgres",
+            "username": "postgres",
+            "password": "postgres"
+          }
+        ]
+      }
+    },
+    "devpod": {
+      "prebuildRepository": "${localEnv:DEVPOD_PREBUILD_REPO:-ghcr.io/${localEnv:GHCR_USERNAME:-yourusername}/devpod-cache}"
+    }
+  },
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": false
+    },
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+    "ghcr.io/devcontainers/features/terraform:1": {}
+  },
+  "forwardPorts": [
+    8080,
+    8888,
+    3000,
+    5432,
+    9092,
+    6379
+  ],
+  "portsAttributes": {
+    "8080": {
+      "label": "Airflow Webserver",
+      "onAutoForward": "openBrowser"
+    },
+    "8888": {
+      "label": "Jupyter Lab",
+      "onAutoForward": "notify"
+    },
+    "3000": {
+      "label": "Dagit/Dagster UI",
+      "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "PostgreSQL",
+      "onAutoForward": "silent"
+    },
+    "9092": {
+      "label": "Kafka",
+      "onAutoForward": "silent"
+    },
+    "6379": {
+      "label": "Redis",
+      "onAutoForward": "silent"
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.dbt,target=/home/vscode/.dbt,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.gcp,target=/home/vscode/.gcp,type=bind,consistency=cached"
+  ],
+  "postStartCommand": "if [ -d ~/.ssh ]; then chmod 700 ~/.ssh && chmod 600 ~/.ssh/*; fi",
+  "containerEnv": {
+    "AIRFLOW_HOME": "/workspace/airflow",
+    "DBT_PROFILES_DIR": "/workspace/dbt",
+    "PREFECT_HOME": "/workspace/prefect",
+    "PYTHONPATH": "/workspace"
+  }
+}

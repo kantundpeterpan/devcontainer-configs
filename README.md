@@ -96,7 +96,26 @@ EOF
 - Docker CLI
 - VS Code extensions: Python, Pylance, Chainlit
 
-### 5. Showcase Configuration
+### 5. Data Engineering Configuration
+**Base Image**: `ghcr.io/yourusername/devcontainer-base-images/data-engineering:latest`
+
+- Python 3.13 + uv
+- Apache Airflow - Workflow orchestration platform
+- dbt (Core + BigQuery + Snowflake + Postgres) - Data transformation
+- PySpark - Distributed data processing
+- Kafka Python clients - Stream processing
+- Polars - High-performance DataFrames
+- Prefect - Modern workflow orchestration
+- Dagster - Data orchestration platform
+- Great Expectations + Soda Core - Data quality
+- dlt - Data loading tool
+- Meltano - ELT platform
+- Celery + Redis - Distributed task queue
+- PostgreSQL/MySQL/SQLite connectors
+- Docker CLI + Kubernetes + Terraform
+- VS Code extensions: Python, dbt, SQLTools, Docker, Kubernetes
+
+### 6. Showcase Configuration
 **Base Image**: `ghcr.io/yourusername/devcontainer-base-images/fullstack:latest`
 
 - Auto-starting services (frontend + backend)
