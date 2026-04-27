@@ -8,6 +8,7 @@ on:
 
 env:
   DEVPOD_PREBUILD_REPO: ghcr.io/${{ github.repository_owner }}/devpod-cache
+  GHCR_USERNAME: ${{ github.repository_owner }}
 
 jobs:
   detect-variants:
