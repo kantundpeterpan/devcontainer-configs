@@ -17,10 +17,23 @@ jobs:
       variants: ${{ steps.set-matrix.outputs.variants }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - id: set-matrix
         run: |
-          variants=$(printf '%s\n' */devcontainer.json | sed 's|/devcontainer.json||' | jq -R -s -c 'split("\n") | map(select(length > 0))')
-          echo "variants=$variants" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+            changed=$(git diff --name-only "${{ github.event.before }}"..HEAD -- '*/devcontainer.json' \
+              | sed 's|/devcontainer.json||' | sort -u)
+            if [ -z "$changed" ]; then
+              echo "variants=[]" >> "$GITHUB_OUTPUT"
+            else
+              variants=$(echo "$changed" | jq -R -s -c 'split("\n") | map(select(length > 0))')
+              echo "variants=$variants" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            variants=$(printf '%s\n' */devcontainer.json | sed 's|/devcontainer.json||' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "variants=$variants" >> "$GITHUB_OUTPUT"
+          fi
 
   prebuild-devcontainer:
     needs: detect-variants
