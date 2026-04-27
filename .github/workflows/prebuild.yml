@@ -44,5 +44,5 @@ jobs:
           for dir in */devcontainer.json; do
             variant=$(dirname "$dir")
             echo "=== Prebuilding $variant ==="
-            devpod build "./$variant"
+            devpod build . --devcontainer-path "./$variant"
           done
