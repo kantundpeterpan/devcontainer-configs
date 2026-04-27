@@ -25,7 +25,7 @@ jobs:
             changed=$(git diff --name-only "${{ github.event.before }}"..HEAD -- '*/devcontainer.json' \
               | sed 's|/devcontainer.json||' | sort -u)
             if [ -z "$changed" ]; then
-              echo "variants=[]" >> "$GITHUB_OUTPUT"
+              echo 'variants=["_none_"]' >> "$GITHUB_OUTPUT"
             else
               variants=$(echo "$changed" | jq -R -s -c 'split("\n") | map(select(length > 0))')
               echo "variants=$variants" >> "$GITHUB_OUTPUT"
@@ -37,6 +37,7 @@ jobs:
 
   prebuild-devcontainer:
     needs: detect-variants
+    if: needs.detect-variants.outputs.variants != '["_none_"]'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
