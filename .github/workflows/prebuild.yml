@@ -10,8 +10,24 @@ env:
   DEVPOD_PREBUILD_REPO: ghcr.io/${{ github.repository_owner }}/devpod-cache
 
 jobs:
-  prebuild-devcontainer:
+  detect-variants:
     runs-on: ubuntu-latest
+    outputs:
+      variants: ${{ steps.set-matrix.outputs.variants }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: set-matrix
+        run: |
+          variants=$(echo '['; for d in */devcontainer.json; do echo "\"$(dirname "$d")\","; done | sed '$s/,$//'; echo ']')
+          echo "variants=$variants" >> "$GITHUB_OUTPUT"
+
+  prebuild-devcontainer:
+    needs: detect-variants
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: ${{ fromJson(needs.detect-variants.outputs.variants) }}
     permissions:
       contents: read
       packages: write
@@ -39,10 +55,5 @@ jobs:
           devpod provider add docker
           devpod provider use docker
 
-      - name: Prebuild all variants
-        run: |
-          for dir in */devcontainer.json; do
-            variant=$(dirname "$dir")
-            echo "=== Prebuilding $variant ==="
-            devpod build . --devcontainer-path "./$variant/devcontainer.json"
-          done
+      - name: Prebuild variant
+        run: devpod build "./${{ matrix.variant }}"
