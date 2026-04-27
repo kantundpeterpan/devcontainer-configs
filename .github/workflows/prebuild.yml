@@ -56,4 +56,4 @@ jobs:
           devpod provider use docker
 
       - name: Prebuild variant
-        run: devpod build "./${{ matrix.variant }}"
+        run: devpod build . --devcontainer-path "./${{ matrix.variant }}/devcontainer.json"
