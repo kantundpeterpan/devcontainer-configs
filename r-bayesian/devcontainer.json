@@ -34,8 +34,9 @@
       "configureZshAsDefaultShell": true
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/devcontainers-extra/features/opencode:1": {},
-    "ghcr.io/devcontainers/features/quarto-cli:1": {}
+    "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {}
   },
   "forwardPorts": [8888, 8787],
   "portsAttributes": {

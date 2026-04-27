@@ -31,8 +31,10 @@
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "moby": false
     },
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers-extra/features/opencode:1": {},
     "ghcr.io/devcontainers-extra/features/act:1": {},
-    "ghcr.io/devcontainers/features/quarto-cli:1": {}
+    "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {}
   },
   "forwardPorts": [8000],
   "portsAttributes": {

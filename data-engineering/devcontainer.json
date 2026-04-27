@@ -60,7 +60,9 @@
     },
     "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
     "ghcr.io/devcontainers/features/terraform:1": {},
-    "ghcr.io/devcontainers/features/quarto-cli:1": {}
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers-extra/features/opencode:1": {},
+    "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {}
   },
   "forwardPorts": [
     8080,
